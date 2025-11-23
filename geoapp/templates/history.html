@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Search History</title>
+</head>
+<body>
+    <h1>Search History</h1>
+
+    <p><a href="{% url 'continent_form' %}">Back</a></p>
+
+    {% for h in history_list %}
+        <h2>Continent: {{ h.continent }}</h2>
+        <p>Searched At (UTC): {{ h.searched_at }}</p>
+        <table border="1">
+            <tr>
+                <th>Country</th>
+                <th>Capital</th>
+                <th>Population</th>
+                <th>Lat/Lng</th>
+                <th>Temp (°C)</th>
+                <th>Description</th>
+            </tr>
+            {% for r in h.results %}
+            <tr>
+                <td>{{ r.country }}</td>
+                <td>{{ r.capital }}</td>
+                <td>{{ r.population }}</td>
+                <td>{{ r.latlng }}</td>
+                <td>{{ r.temperature }}</td>
+                <td>{{ r.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <hr>
+    {% endfor %}
+</body>
+</html>
